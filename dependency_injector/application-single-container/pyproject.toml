@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "single-container"
+version = "0.1.0"
+description = ""
+authors = ["Seunggwan Song <yanhis97531@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+boto3 = "^1.28.62"
+dependency-injector = "^4.41.0"
+black = "^23.9.1"
+flake8 = "^6.1.0"
+mypy-boto3-s3 = "^1.28.55"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

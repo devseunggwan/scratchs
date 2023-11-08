@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from prometheus_fastapi_instrumentator import Instrumentator
 
 from app.note.router import router as note
 from app.db import engine, metadata, database
@@ -42,4 +43,4 @@ def health_check():
 app.include_router(note, tags=["notes"], prefix="/note")
 
 # prometheus
-# Instrumentator().instrument(app).expose(app)
+Instrumentator().instrument(app).expose(app)

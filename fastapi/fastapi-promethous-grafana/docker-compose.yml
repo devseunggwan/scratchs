@@ -10,7 +10,7 @@ services:
     container_name: app
     restart: unless-stopped
     environment:
-      - DATABASE_URL=postgresql://hello_fastapi:hello_f
+      - DATABASE_URL=postgresql://hello_fastapi:hello_fastapi@172.16.238.11/hello_fastapi_dev
     depends_on:
       - db
     networks:

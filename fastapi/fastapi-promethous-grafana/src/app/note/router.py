@@ -13,7 +13,7 @@ router = APIRouter()
 async def create_note(payloal: NoteSchema):
     note_id = await crud.post(payload=payload)
     created_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    
+
     response_object = {
         "id": note_id,
         "title": payload.title,
@@ -21,12 +21,14 @@ async def create_note(payloal: NoteSchema):
         "completed": payload.completed,
         "created_date": created_date,
     }
-    
+
     return response_object
 
 
 @router.get("/{idx}/", response_model=NoteDB)
-async def read_note(idx: int = Path(..., gt=0),):
+async def read_note(
+    idx: int = Path(..., gt=0),
+):
     note = await crud.get(idx=idx)
     if not note:
         raise HTTPException(status_code=404, detail="Note not found")
@@ -39,12 +41,12 @@ async def read_all_notes():
 
 
 @router.put("/{idx}/", response_model=NoteDB)
-async def update_note(payload: NoteSchema, idx: int=Path(..., gt=0)):
+async def update_note(payload: NoteSchema, idx: int = Path(..., gt=0)):
     note = await crud.get(idx=idx)
-    
+
     if not note:
         raise HTTPException(status_code=404, detail="Note not found")
-    
+
     note_id = await crud.put(idx=idx, payload=payload)
     response_object = {
         "id": note_id,
@@ -52,17 +54,17 @@ async def update_note(payload: NoteSchema, idx: int=Path(..., gt=0)):
         "description": payload.description,
         "completed": payload.completed,
     }
-    
+
     return response_object
 
 
 @router.delete("/{idx}/", response_model=NoteDB)
 async def delete_note(idx: int = Path(..., gt=0)):
     note = await crud.get(idx=idx)
-    
+
     if not note:
         raise HTTPException(status_code=404, detail="Note not found")
-    
+
     await crud.delete(idx=idx)
-    
+
     return note

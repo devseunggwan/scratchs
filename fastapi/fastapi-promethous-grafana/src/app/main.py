@@ -9,12 +9,7 @@ metadata.create_all(engine)
 
 app = FastAPI()
 
-origins = [
-    "http://localhost",
-    "http://localhost:8080",
-    "http://localhost:5173",
-    "*"
-]
+origins = ["http://localhost", "http://localhost:8080", "http://localhost:5173", "*"]
 
 app.add_middleware(
     CORSMiddleware,

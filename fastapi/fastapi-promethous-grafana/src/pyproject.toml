@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "fastapi-promethous-grafana"
+name = "app"
 version = "0.1.0"
 description = ""
 authors = ["Seunggwan Song <yanhis97531@gmail.com>"]

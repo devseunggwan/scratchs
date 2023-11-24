@@ -163,4 +163,21 @@ cython_debug/
 *.csv
 *.json
 *.parquet
+*.xlsx
+*.xls
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tif
+*.tiff
+*.pb
+*.pbtxt
+*.ckpt
+*.meta
 # *data*

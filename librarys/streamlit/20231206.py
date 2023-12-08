@@ -14,6 +14,8 @@ if __name__ == "__main__":
     today = df.iloc[0]
     before = df.iloc[period - 1]
 
+    st.set_page_config(layout="wide")
+    
     with st.sidebar:
         st.title("NFTtown Dashboard")
 
@@ -74,35 +76,42 @@ if __name__ == "__main__":
         value=today["youtube_followers"],
         delta=get_delta("youtube_followers", today, before),
     )
+    
+    # tab1, tab2, tab3 = st.tabs(["Daily Active Users", "Daily Followers", "Daily Accounts"])
 
-    st.header("Daily Active Users")
-    st.line_chart(
-        df.iloc[0:period],
-        x="date",
-        y=["MAU", "DAU", "WAU", "WAU/MAU", "new_inventor"],
-        height=500,
-    )
+    chart1, chart2, chart3 = st.columns(3)
+    
+    with chart1:
+        st.header("Daily Active Users")
+        st.line_chart(
+            df.iloc[0:period],
+            x="date",
+            y=["MAU", "DAU", "WAU", "WAU/MAU", "new_inventor"],
+            height=500,
+        )
 
-    st.header("Daily Followers")
-    st.line_chart(
-        df.iloc[0:period],
-        x="date",
-        y=[
-            "twitter_followers",
-            "discord_members",
-            "youtube_followers",
-            "sns_followers_all",
-        ],
-        height=500,
-    )
+    with chart2:
+        st.header("Daily Followers")
+        st.line_chart(
+            df.iloc[0:period],
+            x="date",
+            y=[
+                "twitter_followers",
+                "discord_members",
+                "youtube_followers",
+                "sns_followers_all",
+            ],
+            height=500,
+        )
 
-    st.header("Daily Accounts")
-    st.line_chart(
-        df.iloc[0:period],
-        x="date",
-        y=["new_accounters", "accounters_all", "brezel_all", "brezel"],
-        height=500,
-    )
+    with chart3:
+        st.header("Daily Accounts")
+        st.line_chart(
+            df.iloc[0:period],
+            x="date",
+            y=["new_accounters", "accounters_all", "brezel_all", "brezel"],
+            height=500,
+        )
 
     st.header("Data Source")
     st.download_button(

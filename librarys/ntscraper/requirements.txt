@@ -1,0 +1,2 @@
+ntscraper
+tqdm

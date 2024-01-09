@@ -181,3 +181,5 @@ cython_debug/
 *.ckpt
 *.meta
 # *data*
+
+*.db

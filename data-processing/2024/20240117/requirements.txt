@@ -1,0 +1,7 @@
+pandas
+matplotlib
+seaborn
+ydata_profiling
+sweetviz
+pygwalker
+scikit-learn

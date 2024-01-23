@@ -185,3 +185,5 @@ cython_debug/
 *.db
 *.html
 *.ttf
+
+node_modules/

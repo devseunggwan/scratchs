@@ -13,20 +13,6 @@ class S3:
     def __init__(self):
         self.session = aioboto3.Session()
 
-    def get_object(self, bucket, key):
-        obj = self.s3.get_object(Bucket=bucket, Key=key)
-        return obj["Body"]
-
-    def put_object(self, bucket, key, data):
-        self.s3.put_object(Bucket=bucket, Key=key, Body=data)
-
-    def copy_object(self, bucket, key, new_key):
-        self.s3.copy_object(
-            Bucket=bucket,
-            CopySource={"Bucket": bucket, "Key": key},
-            Key=new_key,
-        )
-
 
 async def main(start, end):
     load_dotenv()

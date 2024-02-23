@@ -185,6 +185,10 @@ cython_debug/
 *.db
 *.html
 *.ttf
+*.p8
+*.pem
+*.p12
+*.gz
 
 node_modules/
 

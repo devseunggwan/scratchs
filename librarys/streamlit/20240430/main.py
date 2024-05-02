@@ -19,9 +19,11 @@ class NFTCurationBot:
         self.reservoir_nft_list_url = "https://api.reservoir.tools/tokens/v7"
 
         self.prompt = """
-            You are an NFT expert. Please look at the NFT images provided and a comprehensive evaluation.
-            Please write up to 300 characters in length.
-            Please write it in Korean.
+            You are an NFT expert. 
+            1. Please look at the NFT images provided and a comprehensive evaluation.
+            2. Please express the appearance of picture vividly.
+            3. Please write up to 300 characters in length.
+            4. Please write it in Korean.
             
             Collection Name: {collection_name}
             Collection Description: {collection_description}
@@ -38,6 +40,11 @@ class NFTCurationBot:
             self.question_count = st.slider("Question Count", 1, 3, 1, 1)
 
             is_click = st.button("Run")
+
+            st.warning(
+                "현재 이더리움만 지원하고 있습니다. 이더리움 컬랙션만 테스트 부탁드립니다.",
+                icon="🚨",
+            )
 
             return network, collection_id, is_click
 

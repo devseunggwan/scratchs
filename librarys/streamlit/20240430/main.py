@@ -1,6 +1,7 @@
 import os
 import random
 import time
+import logging
 
 import httpx
 import streamlit as st
@@ -19,7 +20,7 @@ class NFTCurationBot:
         self.reservoir_nft_list_url = "https://api.reservoir.tools/tokens/v7"
 
         self.prompt = """
-            You are an NFT expert. 
+            You are an NFT expert.
             1. Please look at the NFT images provided and a comprehensive evaluation.
             2. Please express the appearance of picture vividly.
             3. Please write up to 300 characters in length.
@@ -28,6 +29,8 @@ class NFTCurationBot:
             Collection Name: {collection_name}
             Collection Description: {collection_description}
         """
+
+        self.logger = logging.getLogger(st.__name__)
 
     def st_sidebar(self):
         with st.sidebar:
@@ -116,6 +119,8 @@ class NFTCurationBot:
 
         st.header("Bot Curation")
         if is_click:
+            self.logger.info(f"Network: {network}, Collection ID: {collection_id}")
+
             nft_images, collection_name, collection_description = self.get_nft_data(
                 collection_id
             )
@@ -132,7 +137,12 @@ class NFTCurationBot:
                     )
                     st.write(nft_curations)
 
-                    st.write(f"⏱️ Elapsed Time: {time.time() - start_time:.2f} sec")
+                    elapsed_time = time.time() - start_time
+                    st.write(f"⏱️ Elapsed Time: {elapsed_time:.2f} sec")
+
+                    self.logger.info(
+                        f"Network: {network}, Collection ID: {collection_id}, Curation: {nft_curations}, Elapsed Time: {elapsed_time:.2f} sec"
+                    )
 
             st.subheader("NFT Description")
             st.write(collection_description)

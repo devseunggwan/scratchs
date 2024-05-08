@@ -5,6 +5,7 @@ import logging
 
 import httpx
 import streamlit as st
+import pandas as pd
 from dotenv import load_dotenv
 from openai import OpenAI
 from streamlit_image_select import image_select
@@ -26,6 +27,10 @@ class NFTCurationBot:
             "linea": "api-linea",
             "avalanche": "api-avalanche",
         }
+        self.reservoir_period = ["1d", "7d", "30d"]
+        self.reservoir_ranking_url = (
+            lambda x: f"https://{self.reservoir_networks_url_prefix[x]}.reservoir.tools/collections/trending/v1"
+        )
         self.reservoir_collection_url = (
             lambda x: f"https://{self.reservoir_networks_url_prefix[x]}.reservoir.tools/collections/v7"
         )
@@ -140,6 +145,21 @@ class NFTCurationBot:
 
         return nft_images, collection_name, collection_description
 
+    @st.cache_data(ttl="1h", hash_funcs={httpx.Client: id})
+    def get_collection_ranking(
+        _self, network, period: str = "1d", sortby: str = "volume"
+    ):
+        params = {
+            "period": period,
+            "sortBy": sortby,
+            "limit": 100,
+        }
+        __url = _self.reservoir_ranking_url(network)
+
+        ranking = httpx.get(__url, params=params, headers=_self.headers).json()
+
+        return ranking
+
     def get_nft_curation(self, nft_images, collection_name, collection_description):
         prompt = self.prompt.format(
             collection_name=collection_name,
@@ -164,44 +184,95 @@ class NFTCurationBot:
         return response.choices[0].message.content
 
     def run(self):
+        st.set_page_config(
+            page_title="NFT Curation Bot",
+            page_icon="🤖",
+            layout="wide",
+            initial_sidebar_state="expanded",
+        )
+
         network, collection_id, is_click = self.st_sidebar()
 
-        st.header("Bot Curation")
-        if is_click:
-            self.logger.info(f"Network: {network}, Collection ID: {collection_id}")
+        col_ranking, col_curations = st.columns(2)
 
-            nft_images, collection_name, collection_description = self.get_nft_data(
-                network, collection_id
+        with col_ranking.container(border=True):
+            st.header("Collection Ranking")
+
+            col_network, col_period, col_sortby = st.columns(3)
+            with col_network:
+                ranking_network = st.selectbox(
+                    "Select Network", list(self.reservoir_networks_url_prefix.keys())
+                )
+
+            with col_period:
+                period = st.selectbox("Period", self.reservoir_period)
+            with col_sortby:
+                sortby = st.selectbox("Sort By", ["volume", "sales"])
+
+            ranking = self.get_collection_ranking(
+                ranking_network, period=period, sortby=sortby
             )
+            ranking = ranking["collections"]
+            df_ranking = pd.DataFrame(ranking)
 
-            if len(nft_images) == 0:
-                st.warning("No NFT images available.")
-                return
+            ranking_columns = [
+                "image",
+                "id",
+                "name",
+                "volume",
+                "volumePercentChange",
+                "count",
+                "countPercentChange",
+            ]
+            df_ranking = df_ranking[ranking_columns]
 
-            for i in range(self.question_count):
-                start_time = time.time()
-                with st.status(f"⏳ Generating NFT Curation ({i + 1})", expanded=True):
-                    nft_curations = self.get_nft_curation(
-                        nft_images, collection_name, collection_description
-                    )
-
-                    st.write(nft_curations)
-
-                    elapsed_time = time.time() - start_time
-                    st.write(f"⏱️ Elapsed Time: {elapsed_time:.2f} sec")
-
-                    self.logger.info(
-                        f"Network: {network}, Collection ID: {collection_id}, Curation: {nft_curations}, Elapsed Time: {elapsed_time:.2f} sec"
-                    )
-
-            st.subheader("NFT Description")
-            st.write(collection_description)
-            image_select(
-                label="Source NFT Images",
-                images=nft_images,
+            st.dataframe(
+                df_ranking,
+                height=1000,
                 use_container_width=True,
+                hide_index=True,
+                column_config={"image": st.column_config.ImageColumn("icon")},
             )
-            st.toast("Curation has been generated!", icon="✅")
+
+        with col_curations.container(border=True):
+            st.header("Bot Curation")
+            if is_click:
+                self.logger.info(f"Network: {network}, Collection ID: {collection_id}")
+
+                nft_images, collection_name, collection_description = self.get_nft_data(
+                    network, collection_id
+                )
+
+                if len(nft_images) == 0:
+                    st.warning("No NFT images available.")
+                    return
+
+                for i in range(self.question_count):
+                    start_time = time.time()
+                    with st.status(
+                        f"⏳ Generating NFT Curation ({i + 1})", expanded=True
+                    ):
+                        nft_curations = self.get_nft_curation(
+                            nft_images, collection_name, collection_description
+                        )
+
+                        st.write(nft_curations)
+
+                        elapsed_time = time.time() - start_time
+                        st.write(f"⏱️ Elapsed Time: {elapsed_time:.2f} sec")
+
+                        self.logger.info(
+                            f"Network: {network}, Collection ID: {collection_id}, Curation: {nft_curations}, Elapsed Time: {elapsed_time:.2f} sec"
+                        )
+
+                st.subheader("NFT Description")
+                st.write(collection_description)
+                image_select(
+                    label="Source NFT Images",
+                    images=nft_images,
+                    use_container_width=True,
+                )
+                st.toast("Curation has been generated!", icon="✅")
 
 
 if __name__ == "__main__":

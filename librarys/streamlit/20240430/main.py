@@ -16,8 +16,22 @@ class NFTCurationBot:
         self.model = "gpt-4-turbo"
 
         self.headers = {"x-api-key": os.getenv("RESERVOIR_API_KEY")}
-        self.reservoir_collection_url = "https://api.reservoir.tools/collections/v7"
-        self.reservoir_nft_list_url = "https://api.reservoir.tools/tokens/v7"
+        self.reservoir_networks_url_prefix = {
+            "ethereum": "api",
+            "polygon": "api-polygon",
+            "bsc": "api-bsc",
+            "arbitrum": "api-arbitrum",
+            "optimism": "api-optimism",
+            "base": "api-base",
+            "linea": "api-linea",
+            "avalanche": "api-avalanche",
+        }
+        self.reservoir_collection_url = (
+            lambda x: f"https://{self.reservoir_networks_url_prefix[x]}.reservoir.tools/collections/v7"
+        )
+        self.reservoir_nft_list_url = (
+            lambda x: f"https://{self.reservoir_networks_url_prefix[x]}.reservoir.tools/tokens/v7"
+        )
 
         self.prompt = """
         역할
@@ -74,7 +88,9 @@ class NFTCurationBot:
         with st.sidebar:
             st.header("NFT Curation Bot")
 
-            network = st.text_input("Network", value="ethereum")
+            network = st.selectbox(
+                "Network", list(self.reservoir_networks_url_prefix.keys())
+            )
             collection_id = st.text_input("Collection ID")
             self.nft_image_counts = st.slider("NFT Images", 1, 20, 10, 1)
             self.max_tokens = st.slider("Max Tokens", 50, 1000, 500, 50)
@@ -82,24 +98,19 @@ class NFTCurationBot:
 
             is_click = st.button("Run")
 
-            st.warning(
-                "현재 이더리움만 지원하고 있습니다. 이더리움 컬랙션만 테스트 부탁드립니다.",
-                icon="🚨",
-            )
-
             return network, collection_id, is_click
 
-    def get_nft_data(self, collection_id):
+    def get_nft_data(self, network, collection_id):
         params = {
             "id": collection_id,
         }
         collection = httpx.get(
-            self.reservoir_collection_url, params=params, headers=self.headers
+            self.reservoir_collection_url(network), params=params, headers=self.headers
         ).json()
 
         params = {"collection": collection_id, "sortBy": "updatedAt", "limit": 100}
         nft_list = httpx.get(
-            self.reservoir_nft_list_url, params=params, headers=self.headers
+            self.reservoir_nft_list_url(network), params=params, headers=self.headers
         ).json()
 
         collection_name = (
@@ -160,7 +171,7 @@ class NFTCurationBot:
             self.logger.info(f"Network: {network}, Collection ID: {collection_id}")
 
             nft_images, collection_name, collection_description = self.get_nft_data(
-                collection_id
+                network, collection_id
             )
 
             if len(nft_images) == 0:
@@ -173,6 +184,7 @@ class NFTCurationBot:
                     nft_curations = self.get_nft_curation(
                         nft_images, collection_name, collection_description
                     )
+
                     st.write(nft_curations)
 
                     elapsed_time = time.time() - start_time

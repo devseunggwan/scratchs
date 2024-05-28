@@ -183,6 +183,18 @@ cython_debug/
 *.meta
 # *data*
 
+# media files
+*.mp3
+*.wav
+*.mp4
+*.avi
+*.mkv
+*.mov
+*.flv
+*.wmv
+*.webm
+
+
 *.db
 *.html
 *.ttf

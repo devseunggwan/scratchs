@@ -1,0 +1,10 @@
+snowflake-snowpark-python[pandas]
+pyarrow 
+streamlit
+fastapi
+uvicorn[standard]
+gunicorn
+ffmpeg-python
+ffprobe
+torch
+openai-whisper

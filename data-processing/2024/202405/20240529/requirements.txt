@@ -1,0 +1,3 @@
+openai-whisper
+lightning-whisper-mlx
+python-ffmpeg

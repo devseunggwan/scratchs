@@ -38,21 +38,28 @@ class NftCurationLLM:
 - 당신은 주어진 NFT 이미지를 기반으로 컬렉션에 대한 묘사를 작성해야 합니다.
 
 2. 작성 항목 및 설명
+- 답변은 한국어로 작성해주세요.
 - 진부하지 않고 생동감있게 표현해주세요.
 - 이미지의 주요 특징을 강조해주세요. 
-- 첫번째, 두번째 이미지는 어떻다. 라고 설명하지말고 말아주세요.
 - 이미지의 개별적인 묘사보다 종합적인 묘사를 작성해주세요.
-    
-3. 문장 작성 방법
-- 답변은 한국어로 작성해주세요.
-- 평가와 묘사는 최대 200자로 제한합니다.
-- 평가와 묘사 등을 문단이나 구분해서 작성하지 말아주세요.
+- 반말로 작성하지 마세요.
+- 명사형 종결문, 해라체, 서술형 등 종결 어미로 절대 작성하지 마세요.
+- 컬랙션 이름:, 컬랙션 설명:, 컬랙션 이름 - 등 워딩을 사용하지 마세요.
+- 첫번째, 두번째 이미지는 어떻다. 같이 각각 이미지를 설명하지 말아주세요.
+- 평가와 묘사는 최대 {max_korean_token_length}자로 제한합니다.
 - 컬랙션 이름을 작성할 떄는 원문 그대로 작성해주세요.
 - 문법, 맞춤법, 띄어쓰기를 꼭 지켜주세요.
 
-4. 추가 정보
+3. 추가 정보
 - 컬렉션 이름: {collection_name}
 - 컬렉션 설명: {collection_description}
+
+4. 결과 예시
+- Shit Grins 컬렉션은 단순하면서도 강렬한 웃음을 담고 있습니다. 섬세한 선으로 그려진 이 이미지는 각기 다른 표정을 통해 유쾌하고 익살스러운 분위기를 자아내며, 모든 표정들이 하찮게 여겨질 수도 있는 순간들에 대한 유머와 기쁨을 전합니다. 눈이 X자로 되어 있거나 풍자적인 웃음을 띈 얼굴들이 이 컬렉션의 매력을 높입니다. 이 머리완성되지 않은 스케치들은 보는 이로 하여금 각자의 해석을 더해 완성해 나가도록 합니다.
+- Friendly Beasts 컬렉션은 현대 디지털 아트의 따뜻한 매력을 총족실히 보여줍니다. 각 작품은 동물들과 여타 자연 요소들을 독특하고 친근한 방식으로 재해석하여, 사람들에게 자연과의 연결을 더욱 깊게 생각하게 만듭니다. 따뜻한 색감과 선명한 디테일은 보는 이로 하여금 자연 속에 있는 듯한 생생한 느낌을 받게 합니다. 귀여운 동물의 일상 속 순간들을 포착한 이 이미지는 단순한 그림을 넘어서, 각자 개별적인 이야기를 상상하게 만듭니다. Friendly Beasts는 동물과 자연을 사랑하는 모든 이들에게 완벽한 예술적 경험을 제공합니다.
+- Azuki 컬렉션은 매력적이면서도 독특한 스타일의 아바타들이 빚어내는 환상의 공간입니다. 각 아바타는 개성 넘치는 모습과 디테일한 요소들로 구성되어, 전통과 현대가 어우러지는 분위기를 표현합니다. 강렬한 색감과 굵은 선을 사용하여 캐릭터들의 감정과 태도가 생생하게 전달됩니다. 일본 전통 복장을 재해석한 의상부터 독특한 소품까지, 각 아바타는 독자적인 이야기를 담고 있으며, 이를 통해 'The Garden'이라는 인터넷 구석에서 만나 서로 교류하고 성장할 수 있는 회원이 됩니다. Azuki 컬렉션은 예술가, 창작자, 그리고 웹3 애호가들이 모여 탈중앙화된 미래를 꿈꾸는데 완벽한 플랫폼을 제공합니다.
+- Lil Pudgys는 22,222개의 NFT로 구성된 컬렉션으로, Pudgy Penguins의 연장선에서 등장했습니다. 이 작은 펭귄들은 크기는 작지만 큰 의미와 역사를 담고 있습니다. 특히 겨울의 혹독한 시기 동안 태어난 이들은 공동체에 새로운 생명을 불어넣었습니다. 이 컬렉션은 각 Lil Pudgy가 독특한 특징과 성격을 지녀, 진정한 다양성과 유쾌함을 보여줍니다. 귀여운 외모와 함께 다양한 액세서리와 의상, 그리고 생동감 넘치는 표정들이 포함되어 있으며, 이는 다양한 문화와 개성을 반영합니다. Lil Pudgy 소유자들은 특별한 경험과 이벤트, 지적 재산권 라이선싱 기회 등을 독점적으로 누릴 수 있습니다. 이러한 요소들이 더해져 Lil Pudgys는 단순한 수집품을 넘어 더욱 풍부하고 연결된 커뮤니티를 만들고 있습니다.
+- Galaxy Habbos 컬렉션은 미래의 디지털 유토피아를 그린 픽셀아트 스타일의 세계를 담아냅니다. 각 이미지에서 나타나는 화려한 네온 빛깔과 정교한 픽셀 배치는 디지털의 발전과 그 무한한 가능성을 상징합니다. 사람 형상의 실루엣은 각 이미지마다 공통되게 등장하나, 주변의 디지털 렌더링과 함께 유니크함을 주는 요소들을 갖추고 있어 독특한 아우라를 자아냅니다. 어두운 배경이 인물의 형상을 더 돋보이게 만들며, 미래 지향적이고 SF적인 분위기를 연출하여 한눈에 끌리게 합니다. Galaxy Habbos는 디지털 예술의 새로운 경계를 보여주며, 가상 세계 속에서만 가능한 환상적인 분위기를 완벽히 담고 있습니다.
 """
         self.prompt_tag = """
 1. 역할
@@ -137,9 +144,14 @@ class NftCurationLLM:
         return nft_images, collection_name, collection_description
 
     def get_collection_description(
-        self, nft_images, collection_name, collection_description
+        self,
+        nft_images,
+        collection_name,
+        collection_description,
+        max_korean_token_length=200,
     ):
         prompt = self.prompt_description.format(
+            max_korean_token_length=max_korean_token_length,
             collection_name=collection_name,
             collection_description=collection_description,
         )
@@ -216,6 +228,10 @@ class NftCurationLLM:
         nft_description = self.get_collection_description(
             nft_images, collection_name, collection_description
         )
+        nft_long_description = self.get_collection_description(
+            nft_images, collection_name, collection_description, 500
+        )
+
         nft_tag = self.get_collection_tag(
             nft_images,
             collection_name,
@@ -237,6 +253,7 @@ class NftCurationLLM:
             "generated": {
                 "title": nft_desc_title,
                 "description": nft_description,
+                "long_description": nft_long_description,
                 "tag": nft_tag,
             },
             "metadata": {

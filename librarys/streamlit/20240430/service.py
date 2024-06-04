@@ -229,7 +229,7 @@ class NftCurationLLM:
             nft_images, collection_name, collection_description
         )
         nft_long_description = self.get_collection_description(
-            nft_images, collection_name, collection_description, 500
+            nft_images, collection_name, collection_description, 1000
         )
 
         nft_tag = self.get_collection_tag(

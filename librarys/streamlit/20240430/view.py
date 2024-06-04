@@ -141,7 +141,7 @@ class NftCurationUI:
 
         try:
             with st.status(
-                f"⏳ Generating NFT Curation ({datetime.now().strftime('%Y-%M-%d %H:%M:%S')})",
+                f"⏳ Generating NFT Curation ({datetime.now().strftime('%Y-%m-%d %H:%M:%S')})",
                 expanded=True,
             ):
                 result_data = self.llm_instance(
@@ -152,7 +152,13 @@ class NftCurationUI:
                 )
 
                 st.markdown(f"##### {result_data['generated']['title']}")
+
+                st.write("###### short description")
                 st.write(result_data["generated"]["description"])
+
+                st.write("###### long description")
+                st.write(result_data["generated"]["long_description"])
+
                 st.markdown("###### tags")
                 st.text(result_data["generated"]["tag"])
 
@@ -168,6 +174,7 @@ class NftCurationUI:
                     images=result_data["source"]["collection"]["images"],
                     use_container_width=True,
                 )
+
             st.toast("Curation has been generated!", icon="✅")
         except openai.BadRequestError as E:
             st.write(E)

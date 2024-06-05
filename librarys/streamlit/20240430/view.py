@@ -169,11 +169,14 @@ class NftCurationUI:
                     f"Network: {network}, Collection ID: {collection_id}, Elapsed Time: {elapsed_time:.2f} sec"
                 )
 
-                image_select(
-                    label="Source NFT Images",
-                    images=result_data["source"]["collection"]["images"],
-                    use_container_width=True,
-                )
+                if result_data["source"]["collection"]["images"]:
+                    image_select(
+                        label="Source NFT Images",
+                        images=result_data["source"]["collection"]["images"],
+                        use_container_width=True,
+                    )
+                else:
+                    st.error("No NFT Images")
 
             st.toast("Curation has been generated!", icon="✅")
         except openai.BadRequestError as E:

@@ -126,18 +126,18 @@ class NftCurationLLM:
             if len(collection["collections"]) > 0
             else ""
         )
+        nft_images = [
+            nft["token"]["imageSmall"]
+            for nft in nft_list["tokens"]
+            if "imageSmall" in nft["token"] and nft["token"]["imageSmall"] is not None
+        ]
+
         nft_images = (
             random.choices(
-                [
-                    nft["token"]["imageSmall"]
-                    for nft in nft_list["tokens"]
-                    if "imageSmall" in nft["token"]
-                    and nft["token"]["imageSmall"] is not None
-                    and "bmp" not in nft["token"]["imageSmall"]
-                ],
+                nft_images,
                 k=self.image_counts,
             )
-            if len(nft_list["tokens"]) > 0
+            if nft_images
             else []
         )
 
@@ -166,7 +166,7 @@ class NftCurationLLM:
         messages = [{"role": "user", "content": content}]
 
         response = self.openai.chat.completions.create(
-            model=self.model, messages=messages, max_tokens=self.max_tokens
+            model=self.model, messages=messages, max_tokens=self.max_tokens, timeout=60
         )
 
         result = response.choices[0].message.content
@@ -193,7 +193,7 @@ class NftCurationLLM:
         messages = [{"role": "user", "content": content}]
 
         response = self.openai.chat.completions.create(
-            model=self.model, messages=messages, max_tokens=self.max_tokens
+            model=self.model, messages=messages, max_tokens=self.max_tokens, timeout=60
         )
 
         result = response.choices[0].message.content
@@ -209,7 +209,7 @@ class NftCurationLLM:
         messages = [{"role": "user", "content": content}]
 
         response = self.openai.chat.completions.create(
-            model=self.model, messages=messages, max_tokens=self.max_tokens
+            model=self.model, messages=messages, max_tokens=self.max_tokens, timeout=60
         )
 
         result = response.choices[0].message.content

@@ -1,6 +1,11 @@
 resource "local_file" "hello" {
-    filename = "${path.module}/hello.txt"
-    content = "hello world!"
-    file_permission = "0777"
+    filename = var.filename
+    content = var.content
+    file_permission = "0700"
 }
 
+resource "random_string" "random_code" {
+    length = 5
+    special = false
+    upper = false
+}

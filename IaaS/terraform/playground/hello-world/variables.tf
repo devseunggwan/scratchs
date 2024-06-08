@@ -1,12 +1,12 @@
 variable "filename" {
-    default = "./hello.txt"
-    type = string
-    description = "local file name"
+  default     = "./hello.txt"
+  type        = string
+  description = "local file name"
 }
 
 variable "content" {
-    default = "Hello, World!"
-    type = string
-    description = "content of the file"
-  
+  default     = "Hello, World!"
+  type        = string
+  description = "content of the file"
+
 }

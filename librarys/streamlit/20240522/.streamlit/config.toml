@@ -138,7 +138,7 @@
 # be set to the same value across all replicas to ensure they all share the same secret.
 
 # Default: randomly generated secret key.
-# cookieSecret = "c687b101e50dca3abf36a9cb17972cde63ce304d144073334716b25f92af367c"
+# cookieSecret = ""
 
 # If false, will attempt to open a browser window on start.
 

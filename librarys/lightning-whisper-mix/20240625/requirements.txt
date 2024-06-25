@@ -1,0 +1,2 @@
+lightning-whisper-mlx
+tqdm

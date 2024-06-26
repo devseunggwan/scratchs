@@ -1,0 +1,11 @@
+langchain-huggingface 
+langchain_community
+text-generation 
+transformers 
+google-search-results 
+numexpr 
+langchainhub 
+sentencepiece 
+jinja2
+python-dotenv
+lightning-whisper-mlx

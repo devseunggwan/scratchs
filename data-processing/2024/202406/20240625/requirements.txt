@@ -9,3 +9,8 @@ sentencepiece
 jinja2
 python-dotenv
 lightning-whisper-mlx
+
+DIL==0.0.3
+pycryptodome==3.11.0
+pyffx==0.3.0
+pyope==0.2.2

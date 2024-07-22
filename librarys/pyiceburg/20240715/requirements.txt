@@ -1,0 +1,3 @@
+pyiceberg[s3fs,hive]
+sqlalchemy
+pyarrow

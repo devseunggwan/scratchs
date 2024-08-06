@@ -1,0 +1,6 @@
+streamlit
+snowflake-snowpark-python[pandas]
+python-dotenv
+pygwalker
+ydata-profiling
+streamlit-ydata-profiling

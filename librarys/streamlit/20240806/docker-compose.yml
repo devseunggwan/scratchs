@@ -1,0 +1,8 @@
+version: '3.7'
+
+services:
+    app:
+        image: my-streamlit-app:latest
+        ports:
+            - 8502:8502
+        restart: always

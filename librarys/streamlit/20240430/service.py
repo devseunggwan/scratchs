@@ -1,6 +1,7 @@
 import json
 import os
 import random
+import re
 from datetime import datetime
 
 import httpx
@@ -103,6 +104,18 @@ class NftCurationLLM:
 {ai_curation}
 """
 
+    @staticmethod
+    def filter_image_url(image_urls: list[str]) -> list[str]:
+        return [
+            image_url
+            for image_url in image_urls
+            if re.match(
+                r".*(png|jpeg|gif|webp).*",
+                image_url,
+                re.IGNORECASE,
+            )
+        ]
+
     def get_collection_data(self, network, collection_id):
         params = {
             "id": collection_id,
@@ -131,6 +144,7 @@ class NftCurationLLM:
             for nft in nft_list["tokens"]
             if "imageSmall" in nft["token"] and nft["token"]["imageSmall"] is not None
         ]
+        nft_images = self.filter_image_url(nft_images)
 
         nft_images = (
             random.choices(

@@ -196,7 +196,6 @@ cython_debug/
 
 
 *.db
-*.html
 *.ttf
 *.p8
 *.pem

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Web Service</title>
+</head>
+<body>
+	<nav>
+		<ul>
+			<li><a href="/upload">Upload</a></li>
+			<li><a href="/showfiles">Show Files</a></li>
+			{% if session.logged_in %}
+			<li><a href="/add">Add</a></li>
+			<li><a href="/logout">Logout</a></li>
+			{% else %}
+			<li><a href="/login">Login</a></li>
+			{% endif %}
+		</ul>
+	</nav>
+	<h1>Welcome to Web Service</h1>
+	{% if session.logged_in %}
+	<p>Hello, {{ session.username }}!</p>
+	{% else %}
+	<p>You are not logged in.</p>
+	{% endif %}
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <title>File Upload</title>
+</head>
+<body>
+    <form method="POST" target="/upload" enctype="multipart/form-data">
+        <input type="file" name="file" onchange="fileTypeCheck(this)" accept="image/jpeg, image/png">
+        <input type="submit" value="Upload">
+    </form>
+    <br>
+    <a href="/">Back to home</a>
+</body>
+
+<script>
+    function fileTypeCheck(input) {
+        const file = input.files[0];
+        const fileType = file.type;
+        if (fileType !== 'image/jpeg' && fileType !== 'image/png') {
+            alert('File type must be JPEG or PNG');
+            input.value = '';
+        }
+    }
+</script>
+
+</html>

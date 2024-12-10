@@ -3,16 +3,17 @@ from abc import ABC, abstractmethod
 import polars as pl
 from dependency_injector import containers, providers
 from loguru import logger
-from sqlalchemy import create_engine
+from sqlalchemy import Engine, MetaData, create_engine
+from sqlalchemy.dialects.mysql import insert
 
 
 class DatabaseConnector(ABC):
     @abstractmethod
     def connect(self):
-        self.engine = None
+        self.engine: Engine | None = None
 
     @abstractmethod
-    def execute(self, query: str) -> pl.DataFrame | None:
+    def extract(self, query: str) -> pl.DataFrame | None:
         result = None
 
         try:
@@ -27,12 +28,39 @@ class DatabaseConnector(ABC):
 class MysqlConnector(DatabaseConnector):
     def __init__(self, config: dict):
         self.connect_arg = config
-        self.engine = self.connect()
+        self.engine: Engine = self.connect()
+        self.metadata: MetaData = MetaData()
+        self.metadata.reflect(bind=self.engine)
 
     def connect(self):
         engine = create_engine("mysql+pymysql://:@", connect_args=self.connect_arg)
 
         return engine
+
+    def get_table_metadata(self, table_name: str):
+        return self.metadata.tables.get(table_name)
+
+    def upsert_df(self, df: pl.DataFrame, table_name: str, batch_size=1000):
+        records = df.to_dicts()
+        total = len(records)
+        table = self.get_table_metadata(table_name)
+
+        for start in range(0, total, batch_size):
+            end = min(start + batch_size, total)
+            batch = records[start:end]
+
+            if not batch:
+                continue
+
+            with self.engine.connect() as connection:
+                stmt = insert(table).value(batch)
+                update_dict = {
+                    c.name: stmt.inserted[c.name]
+                    for c in table.columns
+                    if not c.primary_key
+                }
+                stmt = stmt.on_duplicate_key_update(**update_dict)
+                connection.execute(stmt)
 
 
 class OracleConnector(DatabaseConnector):

@@ -1,0 +1,9 @@
+SELECT
+    BOOKING_DATE
+    , HOTEL
+    , COUNT(ID) AS COUNT_BOOKINGS
+FROM
+    {{ ref('prepped_data') }}
+GROUP BY
+    BOOKING_DATE,
+    HOTEL

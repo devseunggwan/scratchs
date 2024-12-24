@@ -181,6 +181,7 @@ cython_debug/
 *.pbtxt
 *.ckpt
 *.meta
+*.avro
 # *data*
 
 # media files

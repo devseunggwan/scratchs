@@ -1,0 +1,17 @@
+[project]
+name = "quickstart"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dagster>=1.9.6",
+    "dagster-webserver>=1.9.6",
+    "pandas>=2.2.3",
+    "requests>=2.32.3",
+    "ruff>=0.8.4",
+]
+
+[tool.dagster]
+module_name = "src.definitions"
+code_location_name = "quickstart"

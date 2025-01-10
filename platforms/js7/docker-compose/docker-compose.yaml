@@ -16,7 +16,7 @@ services:
     networks:
       - js7
     environment:
-      MYSQL_ROOT_PASSWORD: js7rootpassword
+      MYSQL_ROOT_PASSWORD: iHateMySQL8.0!
       MYSQL_DATABASE: js7db
       MYSQL_USER: js7user
       MYSQL_PASSWORD: js7password
@@ -28,7 +28,7 @@ services:
     image: sosberlin/js7:joc-${JS7VERSION}
     hostname: js7-joc-primary
     ports:
-      - "4446:4446"
+      - "17443:4446"
     volumes:
       - js7-joc-primary-config:/var/sos-berlin.com/js7/joc/resources/joc
       - js7-joc-primary-logs:/var/log/sos-berlin.com/js7/joc
@@ -102,3 +102,4 @@ volumes:
 
 networks:
   js7:
+

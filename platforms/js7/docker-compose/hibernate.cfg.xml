@@ -3,7 +3,7 @@
  <session-factory>
   <property name="hibernate.connection.driver_class">org.mariadb.jdbc.Driver</property>
   <property name="hibernate.connection.password">js7password</property>
-  <property name="hibernate.connection.url">jdbc:mariadb://db:3306/js7db</property>
+  <property name="hibernate.connection.url">jdbc:mariadb://db:3306/js7db?allowPublicKeyRetrieval=true&amp;useSSL=false</property>
   <property name="hibernate.connection.username">js7user</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
   <property name="hibernate.show_sql">false</property>

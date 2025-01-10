@@ -1,0 +1,98 @@
+version: '3'
+
+services:
+
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - js7
+    environment:
+      MYSQL_ROOT_PASSWORD: iLoveMySQL8.0!
+      MYSQL_DATABASE: js7db
+      MYSQL_USER: js7user
+      MYSQL_PASSWORD: js7password
+    restart: "no"
+
+  js7-joc-primary:
+    depends_on:
+      - db
+    image: sosberlin/js7:joc-${JS7VERSION}
+    hostname: js7-joc-primary
+    ports:
+      - "4446:4446"
+    volumes:
+      - js7-joc-primary-config:/var/sos-berlin.com/js7/joc/resources/joc
+      - js7-joc-primary-logs:/var/log/sos-berlin.com/js7/joc
+    networks:
+      - js7
+    environment:
+      RUN_JS_JAVA_OPTIONS: -Xmx256m
+      RUN_JS_USER_ID: "${JS7USERID}:${JS7GROUPID}"
+    restart: "no"
+
+  js7-controller-primary:
+    image: sosberlin/js7:controller-${JS7VERSION}
+    hostname: js7-controller-primary
+    volumes:
+      - js7-controller-primary:/var/sos-berlin.com/js7/controller/var
+    networks:
+      - js7
+    environment:
+      RUN_JS_JAVA_OPTIONS: -Xmx256m
+      RUN_JS_USER_ID: "${JS7USERID}:${JS7GROUPID}"
+    restart: "no"
+
+  js7-agent-primary:
+    image: sosberlin/js7:agent-${JS7VERSION}
+    hostname: js7-agent-primary
+    volumes:
+      - js7-agent-primary:/var/sos-berlin.com/js7/agent/var_4445
+    networks:
+      - js7
+    environment:
+      RUN_JS_JAVA_OPTIONS: -Xmx256m
+      RUN_JS_USER_ID: "${JS7USERID}:${JS7GROUPID}"
+    restart: "no"
+
+volumes:
+
+  db_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/db_data
+      o: bind
+
+  js7-joc-primary-config:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/js7-joc-primary-config
+      o: bind
+
+  js7-joc-primary-logs:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/js7-joc-primary-logs
+      o: bind
+
+  js7-controller-primary:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/js7-controller-primary
+      o: bind
+
+  js7-agent-primary:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/js7-agent-primary
+      o: bind
+
+networks:
+  js7:

@@ -52,8 +52,14 @@ services:
     restart: "no"
 
   js7-agent-primary:
-    image: sosberlin/js7:agent-${JS7VERSION}
+    # image: sosberlin/js7:agent-${JS7VERSION}
+    build:
+      context: .
+      dockerfile: Dockerfile.js7-agent
+    entrypoint: entrypoint.sh
     hostname: js7-agent-primary
+    volumes:
+      - js7-agent-primary-workspace:/var/sos-berlin.com/js7/agent/workspace
     networks:
       - js7
     environment:
@@ -94,6 +100,14 @@ volumes:
       type: none
       device: ${PWD}/js7-controller-primary
       o: bind
+
+  js7-agent-primary-workspace:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/js7-agent-primary-workspace
+      o: bind
+
 
 networks:
   js7:

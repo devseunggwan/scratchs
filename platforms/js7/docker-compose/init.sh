@@ -1,6 +1,4 @@
-mkdir js7-agent-primary-1
-mkdir js7-agent-primary-2
-mkdir js7-agent-primary-3
+mkdir js7-agent-workspace
 mkdir js7-controller-primary
 mkdir js7-joc-primary-config
 mkdir js7-joc-primary-logs

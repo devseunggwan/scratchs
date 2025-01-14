@@ -1,0 +1,19 @@
+FROM sosberlin/js7:agent-2-7-3
+
+# install build dependencies and needed tools
+RUN apk add \
+    wget \
+    gcc \
+    make \
+    zlib-dev \
+    libffi-dev \
+    openssl-dev \
+    musl-dev
+
+# download and extract python sources
+RUN apk add --no-cache python3 python3-dev py3-pip
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+RUN mkdir /var/sos-berlin.com/js7/agent/workspace
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

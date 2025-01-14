@@ -1,5 +1,5 @@
-db_data
-js7-agent-primary
-js7-controller-primary
-js7-joc-primary-config
-js7-joc-primary-logs
+db_data*
+js7-agent-primary*
+js7-controller-primary*
+js7-joc-primary-config*
+js7-joc-primary-logs*

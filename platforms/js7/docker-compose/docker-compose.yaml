@@ -52,7 +52,6 @@ services:
     restart: "no"
 
   js7-agent-primary:
-    # image: sosberlin/js7:agent-${JS7VERSION}
     build:
       context: .
       dockerfile: Dockerfile.js7-agent
@@ -68,7 +67,7 @@ services:
     restart: "no"
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: ${JS7_AGENT_REPLICAS}
       endpoint_mode: vip
 
 volumes:

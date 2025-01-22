@@ -1,0 +1,12 @@
+# https://airflow.apache.org/docs/helm-chart/stable/manage-dags-files.html#mounting-dags-from-a-private-github-repo-using-git-sync-sidecar
+dags:
+  gitSync:
+    enabled: true
+    repo: git@github.com:<username>/<private-repo-name>.git
+    branch: <branch-name>
+    subPath: ""
+    sshKeySecret: airflow-ssh-secret
+extraSecrets:
+  airflow-ssh-secret:
+    data: |
+      gitSshKey: '<base64-converted-ssh-private-key>'

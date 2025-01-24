@@ -1,0 +1,10 @@
+[project]
+name = "20250123"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ipykernel>=6.29.5",
+    "pyspark>=3.5.4",
+]

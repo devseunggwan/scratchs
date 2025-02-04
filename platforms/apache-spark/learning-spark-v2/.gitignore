@@ -1,2 +1,3 @@
-datasets*
-samples*
+datasets
+samples
+metastore_db

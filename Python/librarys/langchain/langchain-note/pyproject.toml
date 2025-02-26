@@ -1,0 +1,12 @@
+[project]
+name = "langchain-note"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "langchain>=0.3.19",
+    "langchain-community>=0.3.18",
+    "langchain-teddynote>=0.3.42",
+    "python-dotenv>=1.0.1",
+]

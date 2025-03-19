@@ -120,24 +120,14 @@ class NftCurationLLM:
         params = {
             "id": collection_id,
         }
-        collection = httpx.get(
-            self.reservoir_collection_url(network), params=params, headers=self.headers
-        ).json()
+        collection = httpx.get(self.reservoir_collection_url(network), params=params, headers=self.headers).json()
 
         params = {"collection": collection_id, "sortBy": "updatedAt", "limit": 1000}
-        nft_list = httpx.get(
-            self.reservoir_nft_list_url(network), params=params, headers=self.headers
-        ).json()
+        nft_list = httpx.get(self.reservoir_nft_list_url(network), params=params, headers=self.headers).json()
 
-        collection_name = (
-            collection["collections"][0]["name"]
-            if len(collection["collections"]) > 0
-            else ""
-        )
+        collection_name = collection["collections"][0]["name"] if len(collection["collections"]) > 0 else ""
         collection_description = (
-            collection["collections"][0]["description"]
-            if len(collection["collections"]) > 0
-            else ""
+            collection["collections"][0]["description"] if len(collection["collections"]) > 0 else ""
         )
         nft_images = [
             nft["token"]["imageSmall"]
@@ -170,9 +160,7 @@ class NftCurationLLM:
             collection_description=collection_description,
         )
 
-        nft_images = [
-            {"type": "image_url", "image_url": {"url": image}} for image in nft_images
-        ]
+        nft_images = [{"type": "image_url", "image_url": {"url": image}} for image in nft_images]
 
         content = [{"type": "text", "text": prompt}]
         content.extend(nft_images)
@@ -188,18 +176,14 @@ class NftCurationLLM:
 
         return result
 
-    def get_collection_tag(
-        self, nft_images, collection_name, collection_description, ai_curation
-    ):
+    def get_collection_tag(self, nft_images, collection_name, collection_description, ai_curation):
         prompt = self.prompt_tag.format(
             collection_name=collection_name,
             collection_description=collection_description,
             ai_curation=ai_curation,
         )
 
-        nft_images = [
-            {"type": "image_url", "image_url": {"url": image}} for image in nft_images
-        ]
+        nft_images = [{"type": "image_url", "image_url": {"url": image}} for image in nft_images]
 
         content = [{"type": "text", "text": prompt}]
         content.extend(nft_images)
@@ -239,9 +223,7 @@ class NftCurationLLM:
             network=network, collection_id=collection_id
         )
 
-        nft_description = self.get_collection_description(
-            nft_images, collection_name, collection_description
-        )
+        nft_description = self.get_collection_description(nft_images, collection_name, collection_description)
         nft_long_description = self.get_collection_description(
             nft_images, collection_name, collection_description, 1000
         )

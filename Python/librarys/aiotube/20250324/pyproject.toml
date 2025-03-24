@@ -1,0 +1,10 @@
+[project]
+name = "20250324"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiotube>=1.7.2",
+    "beautifulsoup4>=4.13.3",
+]

@@ -1,0 +1,29 @@
+[project]
+name = "open-source-ai-cookbook"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "accelerate",
+    "bitsandbytes",
+    "chromadb",
+    "duckdb>=1.2.1",
+    "kiwipiepy",
+    "langchain",
+    "langchain-chroma>=0.2.2",
+    "langchain-community",
+    "langchain-core",
+    "langchain-huggingface>=0.1.2",
+    "nbformat",
+    "nltk",
+    "openai",
+    "pacmap",
+    "plotly-express",
+    "pypdf",
+    "pysqlite3-binary>=0.5.4",
+    "rank-bm25",
+    "selenium",
+    "sentence-transformers",
+    "unstructured",
+]

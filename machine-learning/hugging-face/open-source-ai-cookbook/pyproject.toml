@@ -3,7 +3,7 @@ name = "open-source-ai-cookbook"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = [
     "accelerate",
     "bitsandbytes",
@@ -21,9 +21,10 @@ dependencies = [
     "pacmap",
     "plotly-express",
     "pypdf",
-    "pysqlite3-binary>=0.5.4",
+    "python-magic-bin==0.4.14",
     "rank-bm25",
     "selenium",
     "sentence-transformers",
+    "tqdm>=4.67.1",
     "unstructured",
 ]

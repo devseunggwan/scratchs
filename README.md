@@ -1,2 +1,2 @@
-# scratchs
-🎨 라이브러리 및 기능 테스트를 하기 위해서 작성한 코드들 모아놓은 Repo입니다.
+<h1 align="center">scratchs</h1>
+

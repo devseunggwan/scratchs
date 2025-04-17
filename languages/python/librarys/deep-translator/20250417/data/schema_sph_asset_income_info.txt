@@ -1,0 +1,340 @@
+AGE_GROUP
+Varchar
+Age group
+—
+7
+AVERAGE_ABROAD_AMOUNT
+Number
+Average 3-month overseas consumption amount (Unit: thousand KRW)
+—
+54
+AVERAGE_ASSET_AMOUNT
+Number
+Average total asset valuation amount (Unit: thousand KRW)
+—
+114
+AVERAGE_BALANCE_AMOUNT
+Number
+Average loan balance (Unit: thousand KRW)
+—
+77
+AVERAGE_BALANCE_COUNT
+Number
+Average number of loans (Unit: cases)
+—
+63
+AVERAGE_BANK_BALANCE_AMOUNT
+Number
+Average loan balance - Primary financial institution (Unit: thousand KRW)
+—
+78
+AVERAGE_BANK_BALANCE_COUNT
+Number
+Average number of loans - Primary financial institution (Unit: cases)
+—
+64
+AVERAGE_CARD_COUNT
+Number
+Average number of cards per person (Unit: cases)
+—
+36
+AVERAGE_CASH_ADVANCE_USAGE_AMOUNT
+Number
+Average 3-month cash advance usage amount (Unit: thousand KRW)
+—
+51
+AVERAGE_CHECK_CARD_COUNT
+Number
+Average number of debit cards per person (Unit: cases)
+—
+38
+AVERAGE_CHECK_CARD_USAGE_AMOUNT
+Number
+Average 3-month debit card usage amount (Unit: thousand KRW)
+—
+53
+AVERAGE_CREDIT_BALANCE_AMOUNT
+Number
+Average loan balance - Unsecured loans (Unit: thousand KRW)
+—
+80
+AVERAGE_CREDIT_BALANCE_COUNT
+Number
+Average number of loans - Unsecured loans (Unit: cases)
+—
+66
+AVERAGE_CREDIT_CARD_COUNT
+Number
+Average number of credit cards per person (Unit: cases)
+—
+37
+AVERAGE_CREDIT_CARD_USAGE_AMOUNT
+Number
+Average 3-month credit card usage amount (Unit: thousand KRW)
+—
+52
+AVERAGE_DELINQUENT_AMOUNT
+Number
+Average delinquent amount (Unit: thousand KRW)
+—
+104
+AVERAGE_DELINQUENT_COUNT
+Number
+Average number of delinquencies (Unit: persons)
+—
+101
+AVERAGE_DELINQUENT_DAYS
+Number
+Average delinquency days (Unit: days)
+—
+102
+AVERAGE_FULL_PAYMENT_USAGE_AMOUNT
+Number
+Average 3-month lump-sum payment usage amount (Unit: thousand KRW)
+—
+49
+AVERAGE_HOUSEHOLD_INCOME
+Number
+Average household income (Unit: thousand KRW)
+—
+24
+AVERAGE_HOUSING_BALANCE_AMOUNT
+Number
+Average loan balance - Mortgage loans (Unit: thousand KRW)
+—
+81
+AVERAGE_HOUSING_BALANCE_COUNT
+Number
+Average number of loans - Mortgage loans (Unit: cases)
+—
+67
+AVERAGE_INCOME
+Number
+Average annual income (Unit: thousand KRW)
+—
+22
+AVERAGE_INCOME_OVER_70
+Number
+Average annual income of high-income earners (Unit: thousand KRW)
+—
+23
+AVERAGE_INSTALLMENT_USAGE_AMOUNT
+Number
+Average 3-month installment usage amount (Unit: thousand KRW)
+—
+50
+AVERAGE_LEASE_GAP
+Float
+(Based on apartment) Jeonse deposit growth rate (Unit: %)
+—
+21
+AVERAGE_LOAN_POTENTIAL1
+Number
+Deposit capacity amount 1 (Unit: thousand KRW)
+—
+110
+AVERAGE_LOAN_POTENTIAL2
+Number
+Deposit capacity amount 2 (Unit: thousand KRW)
+—
+111
+AVERAGE_MAX_DELINQUENT_DAYS
+Number
+Average maximum delinquency days (Unit: days)
+—
+103
+AVERAGE_MORTGAGE1_BALANCE_AMOUNT
+Number
+Average loan balance - Deposit/securities-backed loans (Unit: thousand KRW)
+—
+82
+AVERAGE_MORTGAGE1_BALANCE_COUNT
+Number
+Average number of loans - Deposit/securities-backed loans (Unit: cases)
+—
+68
+AVERAGE_MORTGAGE2_BALANCE_AMOUNT
+Number
+Average loan balance - Asset-backed loans (Unit: thousand KRW)
+—
+83
+AVERAGE_MORTGAGE2_BALANCE_COUNT
+Number
+Average number of loans - Asset-backed loans (Unit: cases)
+—
+69
+AVERAGE_NON_BANK_BALANCE_AMOUNT
+Number
+Average loan balance - Secondary financial institution (Unit: thousand KRW)
+—
+79
+AVERAGE_NON_BANK_BALANCE_COUNT
+Number
+Average number of loans - Secondary financial institution (Unit: cases)
+—
+65
+AVERAGE_PRICE_GAP
+Float
+(Based on apartment) Sale price growth rate (Unit: %)
+—
+20
+AVERAGE_SALES_USAGE_AMOUNT
+Number
+Average 3-month credit sales usage amount (Unit: thousand KRW)
+—
+48
+AVERAGE_SCORE
+Number
+Average credit score (Unit: grade)
+—
+106
+AVERAGE_TOTAL_LIMIT_AMOUNT
+Number
+Average total card limit amount (Unit: thousand KRW)
+—
+55
+AVERAGE_USAGE_AMOUNT
+Number
+Average 3-month card usage amount (Unit: thousand KRW)
+—
+47
+BALANCE_COUNT
+Number
+Number of loan holders (Unit: persons)
+—
+56
+BANK_BALANCE_COUNT
+Number
+Number of loan holders - Primary financial institution loans (Unit: persons)
+—
+57
+CARD_COUNT
+Number
+Number of cardholders (Unit: persons)
+—
+33
+CHECK_CARD_COUNT
+Number
+Number of cardholders - Debit cards (Unit: persons)
+—
+35
+CITY_CODE
+Varchar
+City code
+—
+2
+CREDIT_BALANCE_COUNT
+Number
+Number of loan holders - Unsecured loans (Unit: persons)
+—
+59
+CREDIT_CARD_COUNT
+Number
+Number of cardholders - Credit cards (Unit: persons)
+—
+34
+CUSTOMER_COUNT
+Number
+Total population count (Unit: persons)
+—
+8
+DELINQUENT0_COUNT
+Number
+Number of delinquent borrowers (mild) (Unit: persons)
+—
+98
+DELINQUENT30_COUNT
+Number
+Number of delinquent borrowers (moderate) (Unit: persons)
+—
+99
+DELINQUENT90_COUNT
+Number
+Number of delinquent borrowers (severe) (Unit: persons)
+—
+100
+DISTRICT_CODE
+Varchar
+District code
+—
+3
+GENDER
+Varchar
+Gender
+—
+6
+HOUSING_BALANCE_COUNT
+Number
+Number of loan holders - Mortgage loans (Unit: persons)
+—
+60
+INCOME_TYPE
+Varchar
+File classification (Residential/Corporate)
+—
+5
+MEDIAN_DELINQUENT_AMOUNT
+Number
+Median delinquent amount (Unit: thousand KRW)
+—
+105
+MEDIAN_INCOME
+Number
+Median annual income (Unit: thousand KRW)
+—
+25
+MORTGAGE1_BALANCE_COUNT
+Number
+Number of loan holders - Deposit/securities-backed loans (Unit: persons)
+—
+61
+MORTGAGE2_BALANCE_COUNT
+Number
+Number of loan holders - Asset-backed loans (Unit: persons)
+—
+62
+MULTIPLE_HOUSING_COUNT
+Number
+Number of multiple property owners (Unit: persons)
+—
+113
+NEW_BALANCE_COUNT
+Number
+Number of new loans (Unit: cases)
+—
+84
+NEW_BANK_BALANCE_COUNT
+Number
+Number of new loans - Primary financial institution (Unit: cases)
+—
+85
+NEW_CREDIT_BALANCE_COUNT
+Number
+Number of new loans - Unsecured loans (Unit: cases)
+—
+87
+NEW_HOUSING_BALANCE_COUNT
+Number
+Number of new loans - Mortgage loans (Unit: cases)
+—
+88
+NEW_MORTGAGE1_BALANCE_COUNT
+Number
+Number of new loans - Deposit/securities-backed loans (Unit: cases)
+—
+89
+NEW_MORTGAGE2_BALANCE_COUNT
+Number
+Number of new loans - Asset-backed loans (Unit: cases)
+—
+90
+NEW_NON_BANK_BALANCE_COUNT
+Number
+Number of new loans - Secondary financial institution (Unit: cases)
+—
+86
+NEW_TOTAL_BALANCE_AMOUNT
+Number
+Total new loan balance (Unit: thousand KRW)
+—
+91

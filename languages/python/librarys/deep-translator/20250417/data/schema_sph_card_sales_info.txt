@@ -1,0 +1,250 @@
+ACCOMMODATION_COUNT
+Float
+Accommodation transaction count (Unit: cases)
+—
+40
+ACCOMMODATION_SALES
+Number
+Accommodation sales amount (Unit: KRW)
+—
+20
+AGE_GROUP
+Varchar
+Age group
+—
+8
+BEAUTY_COUNT
+Float
+Beauty transaction count (Unit: cases)
+—
+42
+BEAUTY_SALES
+Number
+Beauty sales amount (Unit: KRW)
+—
+22
+CARD_TYPE
+Varchar
+Individual or corporate
+—
+5
+CAR_SALES
+Number
+Car sales amount (Unit: KRW)
+—
+27
+CAR_SALES_COUNT
+Float
+Car sales transaction count (Unit: cases)
+—
+47
+CAR_SERVICE_SUPPLIES_COUNT
+Float
+Car service and supplies transaction count (Unit: cases)
+—
+48
+CAR_SERVICE_SUPPLIES_SALES
+Number
+Car service and supplies sales amount (Unit: KRW)
+—
+28
+CITY_CODE
+Varchar
+City code
+—
+2
+CLOTHING_ACCESSORIES_COUNT
+Float
+Clothing and accessories transaction count (Unit: cases)
+—
+38
+CLOTHING_ACCESSORIES_SALES
+Number
+Clothing and accessories sales amount (Unit: KRW)
+—
+18
+COFFEE_COUNT
+Float
+Coffee transaction count (Unit: cases)
+—
+33
+COFFEE_SALES
+Number
+Coffee sales amount (Unit: KRW)
+—
+13
+DEPARTMENT_STORE_COUNT
+Float
+Department store transaction count (Unit: cases)
+—
+35
+DEPARTMENT_STORE_SALES
+Number
+Department store sales amount (Unit: KRW)
+—
+15
+DISTRICT_CODE
+Varchar
+District code
+—
+3
+EDUCATION_ACADEMY_COUNT
+Float
+Education and academy transaction count (Unit: cases)
+—
+44
+EDUCATION_ACADEMY_SALES
+Number
+Education and academy sales amount (Unit: KRW)
+—
+24
+ELECTRONICS_FURNITURE_COUNT
+Float
+Electronics and furniture transaction count (Unit: cases)
+—
+46
+ELECTRONICS_FURNITURE_SALES
+Number
+Electronics and furniture sales amount (Unit: KRW)
+—
+26
+ENTERTAINMENT_COUNT
+Float
+Entertainment transaction count (Unit: cases)
+—
+34
+ENTERTAINMENT_SALES
+Number
+Entertainment sales amount (Unit: KRW)
+—
+14
+E_COMMERCE_COUNT
+Float
+E-commerce transaction count (Unit: cases)
+—
+50
+E_COMMERCE_SALES
+Number
+E-commerce sales amount (Unit: KRW)
+—
+30
+FOOD_COUNT
+Float
+Food transaction count (Unit: cases)
+—
+32
+FOOD_SALES
+Number
+Food sales amount (Unit: KRW)
+—
+12
+GAS_STATION_COUNT
+Float
+Gas station transaction count (Unit: cases)
+—
+49
+GAS_STATION_SALES
+Number
+Gas station sales amount (Unit: KRW)
+—
+29
+GENDER
+Varchar
+Gender
+—
+7
+HOME_LIFE_SERVICE_COUNT
+Float
+Home and life service transaction count (Unit: cases)
+—
+43
+HOME_LIFE_SERVICE_SALES
+Number
+Home and life service sales amount (Unit: KRW)
+—
+23
+LARGE_DISCOUNT_STORE_COUNT
+Float
+Large discount store transaction count (Unit: cases)
+—
+36
+LARGE_DISCOUNT_STORE_SALES
+Number
+Large discount store sales amount (Unit: KRW)
+—
+16
+LIFESTYLE
+Varchar
+Lifestyle category
+—
+10
+MEDICAL_COUNT
+Float
+Medical transaction count (Unit: cases)
+—
+45
+MEDICAL_SALES
+Number
+Medical sales amount (Unit: KRW)
+—
+25
+PROVINCE_CODE
+Varchar
+Province code
+—
+1
+SMALL_RETAIL_STORE_COUNT
+Float
+Small retail store transaction count (Unit: cases)
+—
+37
+SMALL_RETAIL_STORE_SALES
+Number
+Small retail store sales amount (Unit: KRW)
+—
+17
+SPORTS_CULTURE_LEISURE_COUNT
+Float
+Sports, culture, and leisure transaction count (Unit: cases)
+—
+39
+SPORTS_CULTURE_LEISURE_SALES
+Number
+Sports, culture, and leisure sales amount (Unit: KRW)
+—
+19
+STANDARD_YEAR_MONTH
+Varchar
+Standard year and month (YYYYMM)
+—
+4
+TIME_SLOT
+Varchar
+Time slot
+—
+9
+TOTAL_COUNT
+Float
+Total transaction count (Unit: cases)
+—
+31
+TOTAL_SALES
+Number
+Total sales amount (Unit: KRW)
+—
+11
+TRAVEL_COUNT
+Float
+Travel transaction count (Unit: cases)
+—
+41
+TRAVEL_SALES
+Number
+Travel sales amount (Unit: KRW)
+—
+21
+WEEKDAY_WEEKEND
+Varchar
+Weekday or weekend indicator
+—
+6

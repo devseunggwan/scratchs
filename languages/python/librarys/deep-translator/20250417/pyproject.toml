@@ -1,0 +1,10 @@
+[project]
+name = "20250417"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "deep-translator>=1.11.4",
+    "polars>=1.27.1",
+]

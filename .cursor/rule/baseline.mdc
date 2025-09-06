@@ -1,0 +1,117 @@
+---
+alwaysApply: true
+---
+
+# 🚀 Scratchs Repository Cursor Rules
+
+> A comprehensive guide for maintaining consistent, high-quality code across all scratch projects.
+
+## 📋 Project Overview
+
+This repository is a collection of scratch projects for experimenting, learning, and prototyping with various technology stacks and platforms.
+
+## 📁 Directory Structure
+
+| Directory | Purpose |
+|-----------|---------|
+| `api/` | API clients and integration code (Kakao, Naver, Coupang, etc.) |
+| `data-processing/` | Data processing and ETL pipelines |
+| `infrastructure/` | Infrastructure code with Terraform |
+| `languages/` | Learning and experimentation with various programming languages |
+| `laplace/` | Laplace ETL related projects |
+| `machine-learning/` | Machine learning and LLM related experiments |
+| `platforms/` | Experiments with various platforms (Snowflake, Dagster, Prefect, DBT, etc.) |
+
+---
+
+## 🛠️ Development Tools and Standards
+
+### 📦 Package Management with UV
+
+> **Primary Tool**: Use UV for all Python package management
+
+- ✅ **Replace legacy tools**: Use UV instead of pip, pipenv, poetry
+- ✅ **Project initialization**: `uv init` to create new projects with proper structure
+- ✅ **Dependency management**: 
+  - Add packages: `uv add <package>`
+  - Remove packages: `uv remove <package>`
+- ✅ **Virtual environment**: UV automatically manages virtual environments
+- ✅ **Lock files**: Always commit `uv.lock` files for reproducible builds
+- ✅ **Python version**: Specify in `pyproject.toml` using `requires-python = ">=3.11"`
+
+### 🔍 Code Quality with Ruff
+
+> **Primary Tool**: Use Ruff for linting and formatting
+
+- ✅ **Unified tooling**: Replace flake8, black, isort with Ruff
+- ✅ **Configuration**: Use `ruff.toml` or `pyproject.toml` for settings
+- ✅ **Pre-commit hooks**: Set up automatic code quality checks
+- ✅ **IDE integration**: Configure real-time linting and formatting
+- ✅ **CI/CD**: Run `ruff check` and `ruff format --check` in pipelines
+
+---
+
+## 🐍 Python Code Style
+
+### Core Principles
+
+1. **Type Hints Required** - All functions and methods must have type hints
+2. **Pydantic for Data Models** - Use Pydantic for settings and data validation
+3. **Async Programming** - Use asyncio and async/await for I/O operations
+4. **Error Handling** - Use specific exception types, not bare except clauses
+5. **Structured Logging** - Use loguru or standard logging module
+6. **Environment Variables** - Use python-dotenv and pydantic-settings
+7. **Documentation** - Write comprehensive docstrings for all public functions
+8. **Testing** - Write unit tests using pytest, aim for high coverage
+
+---
+
+## 📊 Data Processing Standards
+
+- **Polars over Pandas** - Prefer Polars for data manipulation and analysis
+- **SQLAlchemy ORM** - Use SQLAlchemy for database operations
+- **DuckDB for Local Analysis** - Use DuckDB for local data analysis and prototyping
+- **Batch Processing** - Process large datasets in batches to avoid memory issues
+
+---
+
+## 🌐 API Development
+
+- **FastAPI for REST APIs** - Use FastAPI for building REST APIs
+- **Streamlit for Dashboards** - Use Streamlit for data visualization and prototyping
+- **Bearer Token Authentication** - Implement for API endpoints
+- **Pydantic Models** - Use for API request/response validation
+
+---
+
+## 📝 File Naming Conventions
+
+- **Scratch files**: `scratch.py` or `scratch.ipynb` for experimental code
+- **Date-based directories**: `YYYYMMDD` format for organizing daily experiments
+- **Descriptive names**: Use clear, descriptive names that indicate functionality
+
+---
+
+## 🏗️ Project Structure
+
+- **pyproject.toml** - Use for all Python project configuration
+- **Dependencies** - Pin major versions, allow patch updates
+- **Development dependencies** - Separate from production ones
+- **README files** - Include README.md in each project directory
+
+---
+
+## ✅ Quality Checklist
+
+Before committing code, ensure:
+
+- [ ] Type hints are present on all functions
+- [ ] Code passes `ruff check` and `ruff format`
+- [ ] Dependencies are managed with UV
+- [ ] Tests are written for new functionality
+- [ ] Documentation is updated
+- [ ] Environment variables are properly configured
+
+---
+
+*These rules ensure consistent, high-quality code across all projects in the repository.*

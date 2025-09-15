@@ -10,7 +10,6 @@ class DuckDBAdapter {
   async s3Initialize() {
     this.connection = await DuckDBConnection.create();
 
-    // S3 인증 설정
     await this.connection.run(`
         CREATE OR REPLACE SECRET s3_secret (
           TYPE s3,
@@ -19,7 +18,6 @@ class DuckDBAdapter {
         )
       `);
 
-    // 성능 최적화 설정
     await this.connection.run("SET memory_limit = '8GB'");
     await this.connection.run("SET threads = 12");
     await this.connection.run("SET preserve_insertion_order = false");
@@ -57,10 +55,8 @@ async function main() {
   } catch (error) {
     console.error("Error:", error);
   } finally {
-    // 연결을 정리합니다
     adapter.disconnect();
   }
 }
 
-// 메인 함수를 실행합니다
 main().catch(console.error);

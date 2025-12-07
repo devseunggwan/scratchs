@@ -2,116 +2,195 @@
 alwaysApply: true
 ---
 
-# 🚀 Scratchs Repository Cursor Rules
+# Cursor Rules
 
-> A comprehensive guide for maintaining consistent, high-quality code across all scratch projects.
+## COMMUNICATION STYLE
 
-## 📋 Project Overview
+Please reply in a concise and clear style. Avoid unnecessary repetition, filler language, or overly verbose explanations.
 
-This repository is a collection of scratch projects for experimenting, learning, and prototyping with various technology stacks and platforms.
+When explaining complex concepts, use practical examples and analogies that relate to real-world scenarios.
 
-## 📁 Directory Structure
+Do not apologize for errors—fix them. If code is incomplete, add TODO comments instead.
 
-| Directory | Purpose |
-|-----------|---------|
-| `api/` | API clients and integration code (Kakao, Naver, Coupang, etc.) |
-| `data-processing/` | Data processing and ETL pipelines |
-| `infrastructure/` | Infrastructure code with Terraform |
-| `languages/` | Learning and experimentation with various programming languages |
-| `laplace/` | Laplace ETL related projects |
-| `machine-learning/` | Machine learning and LLM related experiments |
-| `platforms/` | Experiments with various platforms (Snowflake, Dagster, Prefect, DBT, etc.) |
+## CRITICAL THINKING AND VERIFICATION
 
----
+Do not affirm my statements or assume my conclusions are correct. Question assumptions, offer counterpoints, and test reasoning. Prioritize truth over agreement.
 
-## 🛠️ Development Tools and Standards
+Before implementing any solution:
 
-### 📦 Package Management with UV
+1. Search the codebase first for similar functionality
+2. Reuse existing patterns and functions before creating new ones
+3. Verify assumptions with code search or by asking clarifying questions
+4. Never assume - only use information from files read, user messages, or tool results
 
-> **Primary Tool**: Use UV for all Python package management
+## CODE GENERATION PRINCIPLES
 
-- ✅ **Replace legacy tools**: Use UV instead of pip, pipenv, poetry
-- ✅ **Project initialization**: `uv init` to create new projects with proper structure
-- ✅ **Dependency management**: 
-  - Add packages: `uv add <package>`
-  - Remove packages: `uv remove <package>`
-- ✅ **Virtual environment**: UV automatically manages virtual environments
-- ✅ **Lock files**: Always commit `uv.lock` files for reproducible builds
-- ✅ **Python version**: Specify in `pyproject.toml` using `requires-python = ">=3.11"`
+## General Standards
 
-### 🔍 Code Quality with Ruff
+- Write clean, readable, and maintainable code
+- Follow DRY (Don't Repeat Yourself) principles
+- Keep functions small and focused on a single responsibility
+- Use meaningful variable and function names that clearly convey intent
+- Add comments only for complex logic, not obvious code
+- Prefer composition over inheritance
+- Write code that is easy to test and debug
 
-> **Primary Tool**: Use Ruff for linting and formatting
+## Error Handling
 
-- ✅ **Unified tooling**: Replace flake8, black, isort with Ruff
-- ✅ **Configuration**: Use `ruff.toml` or `pyproject.toml` for settings
-- ✅ **Pre-commit hooks**: Set up automatic code quality checks
-- ✅ **IDE integration**: Configure real-time linting and formatting
-- ✅ **CI/CD**: Run `ruff check` and `ruff format --check` in pipelines
+- Always implement proper error handling and logging
+- Use specific exception types rather than catching generic exceptions
+- Include context in error messages (what failed, why, and how to fix)
+- Fail fast and fail clearly
+- Log errors with appropriate severity levels
 
----
+## Performance
 
-## 🐍 Python Code Style
+- Consider performance implications for operations on large datasets
+- Use appropriate data structures for the task
+- Avoid premature optimization but be mindful of obvious inefficiencies
+- Profile before optimizing
+- Cache expensive computations when appropriate
 
-### Core Principles
+## LANGUAGE-SPECIFIC GUIDELINES
 
-1. **Type Hints Required** - All functions and methods must have type hints
-2. **Pydantic for Data Models** - Use Pydantic for settings and data validation
-3. **Async Programming** - Use asyncio and async/await for I/O operations
-4. **Error Handling** - Use specific exception types, not bare except clauses
-5. **Structured Logging** - Use loguru or standard logging module
-6. **Environment Variables** - Use python-dotenv and pydantic-settings
-7. **Documentation** - Write comprehensive docstrings for all public functions
-8. **Testing** - Write unit tests using pytest, aim for high coverage
+## Python
 
----
+- Follow PEP 8 style guidelines
+- Use type hints for function arguments and return values
+- Prefer f-strings for string formatting
+- Use list/dict comprehensions for simple transformations
+- Use context managers (with statements) for resource management
+- Prefer pathlib over os.path for file operations
+- Use dataclasses or pydantic for data structures
 
-## 📊 Data Processing Standards
+## SQL
 
-- **Polars over Pandas** - Prefer Polars for data manipulation and analysis
-- **SQLAlchemy ORM** - Use SQLAlchemy for database operations
-- **DuckDB for Local Analysis** - Use DuckDB for local data analysis and prototyping
-- **Batch Processing** - Process large datasets in batches to avoid memory issues
+- Use uppercase for SQL keywords
+- Always use explicit JOIN conditions
+- Avoid SELECT * in production code
+- Use CTEs for complex queries to improve readability
+- Add appropriate indexes for query performance
+- Use parameterized queries to prevent SQL injection
 
----
+## Shell/Bash
 
-## 🌐 API Development
+- Always use set -euo pipefail at the start of scripts
+- Quote variables to prevent word splitting
+- Use [[ ]] instead of [ ] for conditionals
+- Provide meaningful error messages
+- Use functions for reusable code blocks
 
-- **FastAPI for REST APIs** - Use FastAPI for building REST APIs
-- **Streamlit for Dashboards** - Use Streamlit for data visualization and prototyping
-- **Bearer Token Authentication** - Implement for API endpoints
-- **Pydantic Models** - Use for API request/response validation
+## DATA ENGINEERING SPECIFIC
 
----
+## Apache Airflow
 
-## 📝 File Naming Conventions
+- Use meaningful DAG and task IDs that describe their purpose
+- Set appropriate retry policies and timeouts
+- Use XCom sparingly and only for small data
+- Leverage task groups for organizing related tasks
+- Use sensor operators with appropriate poke intervals
+- Document DAG purpose, schedule, and dependencies
+- Use variables and connections for configuration
+- Implement proper monitoring and alerting
 
-- **Scratch files**: `scratch.py` or `scratch.ipynb` for experimental code
-- **Date-based directories**: `YYYYMMDD` format for organizing daily experiments
-- **Descriptive names**: Use clear, descriptive names that indicate functionality
+## Kubernetes
 
----
+- Use resource requests and limits
+- Implement health checks (liveness and readiness probes)
+- Use ConfigMaps for configuration and Secrets for sensitive data
+- Follow the principle of least privilege for RBAC
+- Use namespaces for logical separation
+- Label resources consistently for easier management
 
-## 🏗️ Project Structure
+## Cloud (AWS)
 
-- **pyproject.toml** - Use for all Python project configuration
-- **Dependencies** - Pin major versions, allow patch updates
-- **Development dependencies** - Separate from production ones
-- **README files** - Include README.md in each project directory
+- Follow the principle of least privilege for IAM policies
+- Use infrastructure as code (Terraform, CloudFormation)
+- Enable logging and monitoring for all services
+- Tag resources consistently for cost tracking
+- Use appropriate VPC security groups and network ACLs
+- Implement proper backup and disaster recovery strategies
 
----
+## SECURITY BEST PRACTICES
 
-## ✅ Quality Checklist
+- Never hardcode credentials, API keys, or sensitive information
+- Use environment variables or secret management systems
+- Validate and sanitize all user inputs
+- Follow OWASP security guidelines
+- Implement proper authentication and authorization
+- Use HTTPS for all external communications
+- Keep dependencies up to date and scan for vulnerabilities
+- Implement rate limiting for APIs
+- Use parameterized queries to prevent injection attacks
 
-Before committing code, ensure:
+## DOCUMENTATION
 
-- [ ] Type hints are present on all functions
-- [ ] Code passes `ruff check` and `ruff format`
-- [ ] Dependencies are managed with UV
-- [ ] Tests are written for new functionality
-- [ ] Documentation is updated
-- [ ] Environment variables are properly configured
+- Write clear commit messages using conventional commits (feat:, fix:, docs:, chore:)
+- Keep commit messages under 60 characters for the subject line
+- Document complex algorithms and business logic
+- Maintain up-to-date README files
+- Include setup instructions and dependencies
+- Document API endpoints with request/response examples
+- Keep inline code documentation synchronized with code changes
 
----
+## TESTING
 
-*These rules ensure consistent, high-quality code across all projects in the repository.*
+- Write unit tests for core business logic
+- Use integration tests for external dependencies
+- Aim for meaningful test coverage, not just high percentages
+- Use descriptive test names that explain what is being tested
+- Follow the Arrange-Act-Assert pattern
+- Mock external dependencies in unit tests
+- Test edge cases and error conditions
+
+## VERSION CONTROL
+
+- Make small, focused commits with single logical changes
+- Use feature branches for new development
+- Keep main/master branch stable and deployable
+- Review your own code before requesting review from others
+- Rebase feature branches to keep history clean (when appropriate)
+- Delete merged branches to keep repository clean
+
+## WORKFLOW
+
+When starting a new task:
+
+1. Understand the requirements fully before coding
+2. Plan the approach and identify potential challenges
+3. Search for existing solutions or similar implementations
+4. Break down complex tasks into smaller steps
+5. Implement incrementally with regular testing
+6. Document as you go, not after completion
+7. Review and refactor before marking as complete
+
+## PROJECT STRUCTURE
+
+Maintain clean and organized project structure:
+
+- Separate concerns (data access, business logic, presentation)
+- Use consistent naming conventions across the project
+- Group related files in appropriate directories
+- Keep configuration files at the project root
+- Use .gitignore to exclude unnecessary files
+- Maintain consistent file and directory naming (snake_case, kebab-case, or PascalCase based on convention)
+
+## WHEN USING EXTERNAL LIBRARIES
+
+- Always specify exact versions in dependency files
+- Verify library is actively maintained before adoption
+- Check for security vulnerabilities
+- Understand the library's license
+- Read documentation before using
+- Prefer well-established libraries over new ones for critical functionality
+
+## AI ASSISTANCE OPTIMIZATION
+
+When I provide code or ask questions:
+
+- First search the existing codebase for context
+- Ask clarifying questions if requirements are ambiguous
+- Suggest alternative approaches when appropriate
+- Point out potential issues or improvements
+- Provide working code examples
+- Explain the reasoning behind suggestions

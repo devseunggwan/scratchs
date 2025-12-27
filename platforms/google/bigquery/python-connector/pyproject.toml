@@ -1,0 +1,28 @@
+[project]
+name = "python-connector"
+version = "0.1.0"
+description = "BigQuery Python Connector for ETL/Data Pipeline"
+requires-python = ">=3.11"
+dependencies = [
+    "google-cloud-bigquery>=3.25.0",
+    "pandas>=2.0.0",
+    "pyarrow>=15.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+polars = ["polars>=1.0.0"]
+bqstorage = ["google-cloud-bigquery-storage>=2.25.0"]
+all = ["polars>=1.0.0", "google-cloud-bigquery-storage>=2.25.0"]
+dev = ["pytest>=8.0.0", "ruff>=0.5.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]

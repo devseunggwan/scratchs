@@ -22,35 +22,62 @@ This is a scratch/experimentation repository for data engineering, data processi
 
 ### Python Projects
 
-Most Python projects use one of these dependency management approaches:
+Python projects use **uv** for dependency management (preferred):
 
-1. **Poetry** (preferred for structured projects):
-   ```bash
-   # Install dependencies
-   poetry install
+```bash
+# Initialize new project
+uv init
 
-   # Activate virtual environment
-   poetry shell
+# Add dependencies
+uv add <package>
+uv add --dev <dev-package>
 
-   # Run scripts
-   poetry run python <script.py>
-   ```
+# Install dependencies (creates .venv automatically)
+uv sync
 
-2. **pip + requirements.txt** (for quick experiments):
-   ```bash
-   # Create virtual environment
-   python -m venv .venv
-   source .venv/bin/activate  # macOS/Linux
+# Install with optional dependencies
+uv sync --all-extras
 
-   # Install dependencies
-   pip install -r requirements.txt
-   ```
+# Run scripts
+uv run python <script.py>
 
-### Code Quality Tools
+# Run with specific Python version
+uv run --python 3.12 python <script.py>
+```
 
-Pre-commit hooks are configured with:
-- **gitleaks**: Secret scanning
-- **ruff**: Python linting and formatting (replaces black, isort, flake8)
+Legacy projects may use pip + requirements.txt:
+```bash
+python -m venv .venv
+source .venv/bin/activate  # macOS/Linux
+pip install -r requirements.txt
+```
+
+### Code Formatting (Ruff)
+
+**Ruff** is the standard for Python linting and formatting:
+
+```bash
+# Format code
+ruff format .
+
+# Lint and auto-fix
+ruff check --fix .
+
+# Check without fixing
+ruff check .
+```
+
+Standard `pyproject.toml` configuration:
+```toml
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+```
+
+### Pre-commit Hooks
 
 ```bash
 # Install pre-commit hooks
@@ -58,11 +85,65 @@ pre-commit install
 
 # Run manually on all files
 pre-commit run --all-files
-
-# Ruff commands (if needed manually)
-ruff check --fix .           # Lint and auto-fix
-ruff format .                # Format code
 ```
+
+Configured hooks:
+- **gitleaks**: Secret scanning
+- **ruff**: Linting and formatting
+
+## Git Commit Convention
+
+This repository follows **Conventional Commits** specification.
+
+### Commit Message Format
+
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer]
+```
+
+### Types
+
+| Type | Description |
+|------|-------------|
+| `feat` | New feature |
+| `fix` | Bug fix |
+| `docs` | Documentation changes |
+| `style` | Code style changes (formatting, no logic change) |
+| `refactor` | Code refactoring |
+| `test` | Adding or updating tests |
+| `chore` | Maintenance tasks, dependencies |
+
+### Examples
+
+```bash
+# New feature
+feat(google/bigquery): add Python connector for ETL pipelines
+
+# Bug fix
+fix(airflow): correct DAG scheduling interval
+
+# Documentation
+docs(README): update installation instructions
+
+# Refactoring
+refactor(trino): simplify connection handling
+
+# Multiple lines with body
+feat(dagster): add dbt integration
+
+Add support for running dbt models as Dagster assets.
+Includes automatic dependency detection and materialization.
+```
+
+### Scope Guidelines
+
+- Use directory/project name: `google/bigquery`, `airflow`, `dagster`
+- Use feature name for cross-cutting changes: `auth`, `config`
+- Omit scope for repository-wide changes
 
 ## Platform-Specific Notes
 
@@ -128,11 +209,11 @@ When creating a new dated experiment:
 mkdir -p data-processing/2025/202512/20251219
 cd data-processing/2025/202512/20251219
 
-# Initialize with Poetry
-poetry init --no-interaction
-poetry add <dependencies>
+# Initialize with uv (recommended)
+uv init
+uv add <dependencies>
 
-# Or with pip
+# Or with pip (legacy)
 python -m venv .venv
 source .venv/bin/activate
 pip install <dependencies>
@@ -170,28 +251,6 @@ Test structure varies by project:
   pytest -v              # Verbose output
   ```
 
-## Airflow MCP Integration
-
-This repository has Airflow MCP (Model Context Protocol) integration available via the `mcp__airflow-mcp__*` tools. Use these for:
-- Listing and managing DAGs
-- Triggering DAG runs
-- Querying task instances
-- Managing connections and variables
-- Accessing datasets and event logs
-
-Example workflows:
-```bash
-# List all DAGs
-mcp__airflow-mcp__fetch_dags
-
-# Get DAG details
-mcp__airflow-mcp__get_dag(dag_id="example_dag")
-
-# Trigger a DAG run
-mcp__airflow-mcp__post_dag_run(dag_id="example_dag")
-
-# List connections
-mcp__airflow-mcp__list_connections
 ```
 
 ## Architecture Notes

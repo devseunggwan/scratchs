@@ -249,3 +249,6 @@ terraform.rc
 *.npz
 
 .conda*
+
+credential*
+credentials*
